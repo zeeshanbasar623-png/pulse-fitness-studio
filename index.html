@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pulse Fitness Studio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#0f0f0f;
+color:white;
+}
+
+/* NAVBAR */
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+background:#111;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 8%;
+z-index:1000;
+}
+
+.logo{
+font-size:22px;
+font-weight:700;
+color:#ff2a2a;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+}
+
+nav ul li{
+margin-left:25px;
+}
+
+nav ul li a{
+text-decoration:none;
+color:white;
+font-size:14px;
+}
+
+.menu-toggle{
+display:none;
+font-size:22px;
+cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+height:100vh;
+background:url("https://images.unsplash.com/photo-1558611848-73f7eb4001a1") center/cover no-repeat;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:20px;
+}
+
+.hero-content h1{
+font-size:48px;
+margin-bottom:10px;
+}
+
+.hero-content p{
+margin-bottom:20px;
+color:#ddd;
+}
+
+.btn{
+padding:12px 25px;
+border:none;
+margin:5px;
+cursor:pointer;
+font-weight:600;
+border-radius:5px;
+text-decoration:none;
+display:inline-block;
+}
+
+.btn-red{
+background:#ff2a2a;
+color:white;
+}
+
+/* SECTIONS */
+
+section{
+padding:80px 8%;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:50px;
+font-size:32px;
+}
+
+/* ABOUT */
+
+.about{
+max-width:800px;
+margin:auto;
+text-align:center;
+color:#ccc;
+}
+
+/* SERVICES */
+
+.services-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.card{
+background:#1a1a1a;
+padding:25px;
+border-radius:8px;
+text-align:center;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+background:#222;
+}
+
+/* MEMBERSHIP */
+
+.plans{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+max-width:1000px;
+margin:auto;
+}
+
+.plan{
+background:#1a1a1a;
+padding:35px;
+border-radius:10px;
+text-align:center;
+box-shadow:0 0 15px rgba(0,0,0,0.6);
+transition:0.3s;
+}
+
+.plan:hover{
+transform:translateY(-8px);
+}
+
+.plan h3{
+color:#ff2a2a;
+margin-bottom:10px;
+}
+
+.plan p{
+color:#ccc;
+margin-bottom:15px;
+}
+
+/* Highlight plan */
+
+.featured{
+background:#ff2a2a;
+color:white;
+transform:scale(1.05);
+}
+
+.featured h3{
+color:white;
+}
+
+/* GALLERY */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:10px;
+}
+
+.gallery img{
+width:100%;
+height:200px;
+object-fit:cover;
+border-radius:6px;
+}
+
+/* REVIEWS */
+
+.reviews{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.review{
+background:#1a1a1a;
+padding:20px;
+border-radius:8px;
+}
+
+/* CONTACT */
+
+.contact-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+form input,form textarea{
+width:100%;
+padding:10px;
+margin-bottom:10px;
+border:none;
+border-radius:4px;
+}
+
+form button{
+background:#ff2a2a;
+color:white;
+padding:12px;
+border:none;
+width:100%;
+}
+
+/* FOOTER */
+
+footer{
+background:#111;
+padding:30px 8%;
+text-align:center;
+color:#aaa;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:14px 16px;
+border-radius:50%;
+font-size:22px;
+text-decoration:none;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+nav ul{
+position:absolute;
+top:60px;
+right:0;
+background:#111;
+flex-direction:column;
+width:200px;
+display:none;
+}
+
+nav ul.active{
+display:flex;
+}
+
+nav ul li{
+margin:15px;
+}
+
+.menu-toggle{
+display:block;
+}
+
+.hero-content h1{
+font-size:32px;
+}
+
+.plans{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="logo">Pulse Fitness</div>
+
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+<ul id="menu">
+<li><a href="#about">About</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#membership">Membership</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#reviews">Reviews</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>Transform Your Body at Pulse Fitness Studio</h1>
+
+<p>Stronger Every Day</p>
+
+<a href="#membership" class="btn btn-red">Join Now</a>
+<a href="#services" class="btn btn-red">View Services</a>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<h2 class="section-title">About Us</h2>
+
+<p class="about">
+Pulse Fitness Studio in Mira Bhayandar provides a motivating environment with experienced trainers and modern equipment. Whether you're starting your fitness journey or pushing your limits, our community helps you stay consistent and achieve real results.
+</p>
+
+</section>
+
+<!-- SERVICES -->
+
+<section id="services">
+
+<h2 class="section-title">Our Services</h2>
+
+<div class="services-grid">
+
+<div class="card">Strength Training</div>
+<div class="card">Weight Loss Programs</div>
+<div class="card">Personal Training</div>
+<div class="card">Cardio Training</div>
+<div class="card">Muscle Building</div>
+<div class="card">Group Fitness</div>
+
+</div>
+
+</section>
+
+<!-- MEMBERSHIP -->
+
+<section id="membership">
+
+<h2 class="section-title">Membership Plans</h2>
+
+<div class="plans">
+
+<div class="plan">
+<h3>Monthly Plan</h3>
+<p>Flexible access</p>
+<a href="https://wa.me/919000000000?text=Hi%20I%20want%20to%20join%20Monthly%20Plan%20at%20Pulse%20Fitness%20Studio" class="btn btn-red">Join</a>
+</div>
+
+<div class="plan">
+<h3>Quarterly Plan</h3>
+<p>Save more with 3 months</p>
+<a href="https://wa.me/919000000000?text=Hi%20I%20want%20to%20join%20Quarterly%20Plan%20at%20Pulse%20Fitness%20Studio" class="btn btn-red">Join</a>
+</div>
+
+<div class="plan featured">
+<h3>Yearly Plan</h3>
+<p>Best value membership</p>
+<a href="https://wa.me/919000000000?text=Hi%20I%20want%20to%20join%20Yearly%20Plan%20at%20Pulse%20Fitness%20Studio" class="btn btn-red">Join</a>
+</div>
+
+</div>
+
+</section>
+
+<!-- GALLERY -->
+
+<section id="gallery">
+
+<h2 class="section-title">Gallery</h2>
+
+<div class="gallery">
+
+<img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61">
+<img src="https://images.unsplash.com/photo-1599058917212-d750089bc07e">
+<img src="https://images.unsplash.com/photo-1579758629938-03607ccdbaba">
+<img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd">
+
+</div>
+
+</section>
+
+<!-- REVIEWS -->
+
+<section id="reviews">
+
+<h2 class="section-title">Customer Reviews</h2>
+
+<p style="text-align:center;margin-bottom:40px;">
+⭐ 4.5 Rating from 184 Reviews
+</p>
+
+<div class="reviews">
+
+<div class="review">
+<p>"Great trainers and amazing equipment. Highly recommended!"</p>
+<b>- Rahul S.</b>
+</div>
+
+<div class="review">
+<p>"Very motivating environment. Helped me lose 10kg."</p>
+<b>- Neha K.</b>
+</div>
+
+<div class="review">
+<p>"Best gym in Mira Bhayandar. Friendly trainers and good space."</p>
+<b>- Aman P.</b>
+</div>
+
+</div>
+
+</section>
+
+<!-- MAP -->
+
+<section>
+
+<h2 class="section-title">Find Us</h2>
+
+<iframe
+width="100%"
+height="350"
+style="border:0"
+loading="lazy"
+src="https://maps.google.com/maps?q=Pulse%20Fitness%20Studio%20Mira%20Bhayandar&t=&z=13&ie=UTF8&iwloc=&output=embed">
+</iframe>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<h2 class="section-title">Contact Us</h2>
+
+<div class="contact-grid">
+
+<div>
+
+<p><b>Address:</b></p>
+
+<p>
+Trimurti Building, MTNL Road<br>
+Opp Skin Doctor Murthy<br>
+Near SBI Bank<br>
+Mira Bhayandar, Maharashtra 401107
+</p>
+
+<p style="margin-top:15px;">
+Phone: +91 XXXXX XXXXX
+</p>
+
+</div>
+
+<form>
+
+<input type="text" placeholder="Name" required>
+<input type="email" placeholder="Email" required>
+<textarea rows="5" placeholder="Message"></textarea>
+
+<button type="submit">Send Message</button>
+
+</form>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>Pulse Fitness Studio</p>
+<p>© 2026 All Rights Reserved</p>
+
+</footer>
+
+<a class="whatsapp" href="https://wa.me/919000000000">💬</a>
+
+<script>
+
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("active");
+}
+
+</script>
+
+</body>
+</html>
